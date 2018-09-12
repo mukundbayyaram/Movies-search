@@ -12,11 +12,11 @@ export class ResultsComponent {
 
   moviesList: any;
   width;
-  clicked = false;
   detailsLoaded = false;
   spinner = false;
   selectedMovie = {'title': ''};
-  movieDetails: any
+  movieDetails: any;
+  genre: string;
   
   constructor(private fetchService: FetchService) { }
 
@@ -39,12 +39,20 @@ export class ResultsComponent {
     this.fetchService.getDetails(movie.id).then(result => {
       this.movieDetails = result;
       
-      this.movieDetails.credits.crew.forEach(function(entry) {
-        if(entry.job === 'Director') {
-          this.movieDetails.director += ", ";
-          this.movieDetails.director += entry.name;
-        }
-      }.bind(this));
+      if (this.movieDetails.genres) {
+        let genres = [];
+
+        this.movieDetails.genres.forEach(obj => {
+          if (obj.name) {
+            genres.push(obj.name);
+          }
+        });
+
+        this.genre = genres.join(', ');
+      }
+      else {
+        this.genre = null;
+      }
         
       this.spinner = false; 
       this.detailsLoaded = true;

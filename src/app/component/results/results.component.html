@@ -23,8 +23,10 @@
       <div class="data">
         <div class="media-body">
           <h2 class="media-heading">{{movieDetails.title}}</h2>
-          <h4>{{movieDetails.tagline}}</h4>
-          <p><strong>Release Date:</strong>{{movieDetails.release_date}}</p>
+          <h5>{{movieDetails.tagline}}</h5><br/>
+
+          <p *ngIf="genre"><strong>Genre:</strong> {{genre}}</p>
+          <p><strong>Release Date:</strong> {{movieDetails.release_date}}</p>
           <p><strong>Runtime:</strong> {{movieDetails.runtime}} min</p>
           <p><strong>Plot:</strong> {{movieDetails.Plot}}{{movieDetails.overview}}</p>
         </div>
