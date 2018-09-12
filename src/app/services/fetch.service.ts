@@ -29,11 +29,10 @@ export class FetchService {
         reject(error);
       });
     });
-    return 
   }
 
   getDetails(id): Promise<any> {
-    
+
     return new Promise((resolve, reject) => {
 
       this.base.get(this.detailsUrl + id + '?api_key=' + this.apikey + '&append_to_response=credits')
