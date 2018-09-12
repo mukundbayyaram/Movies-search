@@ -1,3 +1,39 @@
-<p>
-  results works!
-</p>
+<div class="row">
+
+  <div class="col-md-5 col-sm-12">
+
+    <ul class="list-group">
+
+      <li class="list-group-item" *ngFor="let movie of moviesList" (click)=select(movie)
+      [class.active]="selectedMovie == movie">
+        {{movie.title}}<small style="float: right">{{movie.release_date}}</small>
+      </li>
+    </ul>
+  </div>
+
+  <div [hidden]="!spinner">
+    <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
+    <span class="sr-only">Loading...</span>
+  </div>
+
+  <div *ngIf="detailsLoaded" class="media col-md-7 col-sm-12 overlay">
+
+      <div (click)="detailsLoaded = !detailsLoaded" class="close">&times;</div>
+
+      <div class="data">
+        <div class="media-body">
+          <h2 class="media-heading">{{movieDetails.title}}</h2>
+          <h4>{{movieDetails.tagline}}</h4>
+          <p><strong>Release Date:</strong>{{movieDetails.release_date}}</p>
+          <p><strong>Runtime:</strong> {{movieDetails.runtime}} min</p>
+          <p><strong>Plot:</strong> {{movieDetails.Plot}}{{movieDetails.overview}}</p>
+        </div>
+
+        <div class="poster media-right">
+          <a href="#">
+            <img class="media-object" src="https://image.tmdb.org/t/p/w342//{{movieDetails.poster_path}}">
+          </a>
+        </div>
+      </div>
+  </div>
+</div>

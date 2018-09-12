@@ -1,10 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+
+import { ResultsComponent } from './component/results/results.component';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
 export class AppComponent {
-  title = 'movies-search';
+  
+  term: string;
+  
+  @ViewChild(ResultsComponent) private resultsComponent: ResultsComponent;
+
+  onChange(term) {
+    this.resultsComponent.getMovies(term);
+  }
 }
